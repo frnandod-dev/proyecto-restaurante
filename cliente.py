@@ -14,6 +14,9 @@ Args:
         self.nombre = nombre
         self.edad = edad
         self.ventas = []
+        if self.edad < 1:
+            raise ValueError("La edad no puede ser negativa")
+    
     
     def agregar_venta(self, venta):
         """
