@@ -16,7 +16,10 @@ class ClienteFrecuente(Cliente):
     def __init__(self, nombre, edad, descuento):
         super().__init__(nombre, edad)
         self.descuento = descuento
-        self.puntos = 0 
+        self.puntos = 0
+        if self.descuento < 0.0 or self.descuento > 1.0:
+            raise ValueError("Descuento de estar entre 0.0 y 1.0")
+
     def agregar_venta(self, venta):
         """
         Agregar una venta  al cliente frecuente aplicando su descuento.
