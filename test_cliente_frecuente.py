@@ -1,5 +1,6 @@
 import pytest
 from cliente_frecuente import ClienteFrecuente
+from venta import Venta
 
 @pytest.fixture
 def cliente_frecuente():
@@ -25,3 +26,8 @@ def test_descuento_invalido():
 def test_descuento_negativo():
     with pytest.raises(ValueError):
         ClienteFrecuente("Diana", 23, -.5)
+
+def test_puntos(cliente_frecuente):
+    venta1 = Venta("Hamburguesa", 390, 66, 456)
+    cliente_frecuente.agregar_venta(venta1)
+    assert cliente_frecuente.puntos == 36
