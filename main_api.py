@@ -14,3 +14,14 @@ clientes = [
 @app.get("/clientes")
 def obtener_clientes():
     return clientes
+
+from pydantic import BaseModel
+
+class ClienteSchema(BaseModel):
+    nombre: str
+    edad: int
+
+@app.post("/cliente")
+def crear_cliente(cliente: ClienteSchema):
+    clientes.append(cliente)
+    return clientes
