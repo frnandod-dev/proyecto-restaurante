@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from database import SessionLocal
 from models import Cliente
+from pydantic import BaseModel
+from fastapi import HTTPException
 
 app = FastAPI()
 
@@ -8,10 +10,7 @@ app = FastAPI()
 def inicio():
     return {"mensaje": "Bienvenido al restaurante"}
 
-clientes = [
-    {"nombre": "Fernando", "edad": 20},
-    {"nombre": "Diana", "edad": 23}
-]
+
 
 @app.get("/clientes")
 def obtener_clientes():
@@ -20,7 +19,15 @@ def obtener_clientes():
     db.close()
     return clientes_todos
 
-from pydantic import BaseModel
+@app.get(("/clientes/{id}"))
+def obtener_cliente(id: int):
+    db = SessionLocal()
+    buscar_id = db.query(Cliente).filter(Cliente.id == id).first()
+    db.close()
+    if not buscar_id:
+        raise HTTPException(status_code=404, detail="Cliente no encontrado")
+    return buscar_id
+
 
 class ClienteSchema(BaseModel):
     nombre: str
