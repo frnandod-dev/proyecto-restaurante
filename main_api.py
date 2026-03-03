@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from database import SessionLocal
+from models import Cliente
 
 app = FastAPI()
 
@@ -13,7 +15,10 @@ clientes = [
 
 @app.get("/clientes")
 def obtener_clientes():
-    return clientes
+    db = SessionLocal()
+    clientes_todos = db.query(Cliente).all()
+    db.close()
+    return clientes_todos
 
 from pydantic import BaseModel
 
@@ -23,5 +28,9 @@ class ClienteSchema(BaseModel):
 
 @app.post("/cliente")
 def crear_cliente(cliente: ClienteSchema):
-    clientes.append(cliente)
-    return clientes
+    db = SessionLocal()
+    nuevo_cliente = Cliente(nombre=cliente.nombre, edad=cliente.edad)
+    db.add(nuevo_cliente)
+    db.commit()
+    db.close()
+    return nuevo_cliente
