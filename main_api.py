@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from database import SessionLocal
-from models import Cliente
+from models.database import SessionLocal
+from models.models import Cliente
 from pydantic import BaseModel
 from fastapi import HTTPException
 

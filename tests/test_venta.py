@@ -1,5 +1,5 @@
 import pytest
-from venta import Venta 
+from core.venta import Venta 
 
 @pytest.fixture 
 def venta1():

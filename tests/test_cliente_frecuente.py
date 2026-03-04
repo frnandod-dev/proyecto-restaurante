@@ -1,6 +1,6 @@
 import pytest
-from cliente_frecuente import ClienteFrecuente
-from venta import Venta
+from core.cliente_frecuente import ClienteFrecuente
+from core.venta import Venta
 
 @pytest.fixture
 def cliente_frecuente():

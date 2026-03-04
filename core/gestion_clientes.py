@@ -1,5 +1,5 @@
-from cliente import Cliente
-from cliente_frecuente import ClienteFrecuente
+from core.cliente import Cliente
+from core.cliente_frecuente import ClienteFrecuente
 
 def registrar_cliente(lista_clientes):
     """

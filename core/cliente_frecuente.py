@@ -1,4 +1,4 @@
-from cliente import Cliente
+from core.cliente import Cliente
 class ClienteFrecuente(Cliente):
     """
     Cliente con beneficios especiales: descuento y sistema de puntos.

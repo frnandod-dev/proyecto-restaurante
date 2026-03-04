@@ -1,4 +1,4 @@
-from cliente import Cliente
+from core.cliente import Cliente
 import pytest
 
 @pytest.fixture 
